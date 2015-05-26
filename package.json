@@ -6,7 +6,9 @@
   "author": "Jack Callister",
   "license": "ISC",
   "scripts": {
-    "test": "node_modules/.bin/mocha src/__tests__/ --compilers js:babel/register"
+    "test": "npm run mocha && npm run lint",
+    "lint": "node_modules/.bin/eslint src/",
+    "mocha": "node_modules/.bin/mocha src/__tests__/ --compilers js:babel/register"
   },
   "peerDependencies": {
     "react": "^0.13.3"
@@ -14,10 +16,10 @@
   "devDependencies": {
     "babel": "^5.4.7",
     "babel-core": "^5.2.16",
-    "babel-eslint": "^3.1.1",
+    "babel-eslint": "^3.1.9",
     "babel-loader": "^5.0.0",
     "babel-runtime": "^5.2.17",
-    "eslint": "^0.20.0",
+    "eslint": "^0.21.2",
     "eslint-plugin-react": "^2.2.0",
     "mocha": "^2.2.5",
     "sinon": "^1.14.1",
