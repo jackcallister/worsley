@@ -17,14 +17,14 @@ class TodoActions extends Actions {
 
 class TodoStore extends Store {
 
-  constructor(flux) {
+  constructor(flux, todoActions) {
     super(flux);
 
     this.state = {
       todos: []
     }
 
-    const todoConstants = flux.actions.TodoActions.constants;
+    const todoConstants = todoActions.constants;
 
     this.registerActionHandler(
       todoConstants.addTodo,
@@ -43,7 +43,7 @@ class TodoStore extends Store {
 class Flux extends Worsley {
   super();
   this.actions.TodoActions = new TodoActions(this);
-  this.actions.TodoStore = new TodoStore(this);
+  this.actions.TodoStore = new TodoStore(this, this.actions.TodoActions);
 }
 
 class WrapperComponent extends React.Component {
