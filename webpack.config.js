@@ -1,9 +1,9 @@
 module.exports = {
-  entry: './src/arc.js',
+  entry: './src/worsley.js',
 
   output: {
     path: './dist',
-    filename: 'arc.js'
+    filename: 'worsley.js'
   },
 
   module: {
