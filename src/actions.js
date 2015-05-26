@@ -4,51 +4,51 @@ class Actions {
 
   constructor(instance) {
     this.dispatcher = instance.dispatcher;
-    this.ids = this._constructIds();
+    this.constants = this._constructConstants();
     this._wrapActions();
   }
 
-  _dispatch(actionId, data) {
+  _dispatch(constant, data) {
     this.dispatcher.dispatch({
-      type: actionId,
+      type: constant,
       data: data
     });
   }
 
   _wrapActions() {
-    const ids = Object.keys(this.ids);
+    const constants = Object.keys(this.constants);
 
-    for (let i = 0; i < ids.length; i++) {
-      this._wrapAction(ids[i]);
+    for (let i = 0; i < constants.length; i++) {
+      this._wrapAction(constants[i]);
     }
   }
 
-  _wrapAction(actionId) {
-    const unwrappedMethod = this[actionId];
+  _wrapAction(constant) {
+    const unwrappedMethod = this[constant];
 
     const wrappedMethod = (...args) => {
       const data = unwrappedMethod.apply(this, args);
 
-      this._dispatch(actionId, data);
+      this._dispatch(constant, data);
 
       return data;
     };
 
-    this[actionId] = wrappedMethod;
+    this[constant] = wrappedMethod;
   }
 
-  _constructIds() {
-    const ids = {};
+  _constructConstants() {
+    const constants = {};
     const actionNames = Object.getOwnPropertyNames(this.constructor.prototype)
                               .filter((name) =>
       name !== 'constructor' && typeof this[name] === 'function'
     );
 
     for (let i = 0; i < actionNames.length; i++) {
-      ids[actionNames[i]] = actionNames[i];
+      constants[actionNames[i]] = actionNames[i];
     }
 
-    return ids;
+    return constants;
   }
 }
 
