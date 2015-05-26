@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react/addons';
 import assign from 'object-assign';
 
@@ -34,9 +36,9 @@ class Container extends React.Component {
   _getActions() {
     let actions = {};
 
-    this.props.actions.map(function(action) {
+    this.props.actions.map((action) => {
       actions[action] = this.props.flux.actions[action];
-    }.bind(this));
+    });
 
     return actions;
   }
@@ -46,9 +48,9 @@ class Container extends React.Component {
   }
 
   _getStateFromStores() {
-    const stores = this.props.stores.map(function(store) {
+    const stores = this.props.stores.map((store) => {
       return this.props.flux.stores[store];
-    }.bind(this));
+    });
 
     let state = {};
 
