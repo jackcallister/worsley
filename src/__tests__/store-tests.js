@@ -35,7 +35,7 @@ describe('Store', () => {
     const expectedState = {
       data: 'data',
       newData: 'newData'
-    }
+    };
 
     it('non-destructively assigns state', () => {
       store.setState({
