@@ -63,8 +63,13 @@ class Container extends React.Component {
   }
 
   render() {
-    return React.addons.cloneWithProps(this.props.children, this.getChildProps());
+    return React.addons.cloneWithProps(this.props.children, this._getChildProps());
   }
 }
+
+Container.defaultProps = {
+  stores: [],
+  actions: []
+};
 
 export default Container;
