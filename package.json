@@ -24,7 +24,8 @@
     "eslint-plugin-react": "^2.2.0",
     "mocha": "^2.2.5",
     "sinon": "^1.14.1",
-    "webpack": "^1.8.11"
+    "webpack": "^1.8.11",
+    "react": "0.13.x"
   },
   "dependencies": {
     "flux": "^2.0.3",

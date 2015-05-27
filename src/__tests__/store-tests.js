@@ -24,7 +24,11 @@ describe('Store', () => {
     store.registerActionHandler(actionConstant, method);
 
     it('calls the handler', () => {
-      dispatcher.dispatch({ type: actionConstant, data: null });
+      dispatcher.dispatch({
+        type: actionConstant,
+        data: null
+      });
+
       sinon.assert.calledOnce(method);
     });
   });
