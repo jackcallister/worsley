@@ -38,6 +38,10 @@ describe('Actions', () => {
         return null;
       }
 
+      intMethod() {
+        return 1;
+      }
+
       objectMethod() {
         return { foo: 'bar' };
       }
@@ -47,7 +51,7 @@ describe('Actions', () => {
     const fluxStub = { dispatcher: { dispatch: dispatchSpy } };
     const actions = new TestActions(fluxStub);
 
-    it('dispatches undefined values', () => {
+    it('dispatches undefined', () => {
       actions.undefinedMethod();
 
       sinon.assert.calledWith(dispatchSpy, {
@@ -56,7 +60,7 @@ describe('Actions', () => {
       });
     });
 
-    it('dispatches null values', () => {
+    it('dispatches null', () => {
       actions.nullMethod();
 
       sinon.assert.calledWith(dispatchSpy, {
@@ -65,7 +69,16 @@ describe('Actions', () => {
       });
     });
 
-    it('dispatches null values', () => {
+    it('dispatches int', () => {
+      actions.intMethod();
+
+      sinon.assert.calledWith(dispatchSpy, {
+        type: 'intMethod',
+        data: 1
+      });
+    });
+
+    it('dispatches objects', () => {
       actions.objectMethod();
 
       sinon.assert.calledWith(dispatchSpy, {
