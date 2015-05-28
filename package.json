@@ -9,7 +9,8 @@
     "test": "npm run mocha && npm run lint",
     "lint": "node_modules/.bin/eslint src/",
     "mocha": "node_modules/.bin/mocha src/__tests__/ --compilers js:babel/register",
-    "postinstall": "webpack"
+    "prepublish": "npm run test && npm run build",
+    "build": "webpack"
   },
   "peerDependencies": {
     "react": "^0.13.3"
