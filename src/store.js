@@ -36,6 +36,14 @@ class Store extends Events.EventEmitter {
       }
     });
   }
+
+  load(payload) {
+    this.state = payload;
+  }
+
+  unload() {
+    // TODO: Reset state to original;
+  }
 }
 
 export default Store;
