@@ -33,14 +33,12 @@ class TodoStore extends Store {
   constructor(flux, todoActions) {
     super(flux);
 
-    this.state = {
+    this.setInitiaState({
       todos: []
-    }
-
-    const todoConstants = todoActions.constants;
+    });
 
     this.registerActionHandler(
-      todoConstants.addTodo,
+      todoActions.constants.addTodo,
       this.addTodo
     );
   }
