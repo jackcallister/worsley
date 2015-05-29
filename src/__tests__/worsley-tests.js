@@ -4,7 +4,6 @@ import { Worsley, Store } from '../worsley';
 import assert from 'assert';
 import sinon from 'sinon';
 
-
 describe('Worsley', () => {
 
   const initialState = { foo: 'bar' };

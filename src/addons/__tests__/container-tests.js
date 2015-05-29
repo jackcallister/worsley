@@ -1,6 +1,6 @@
 'use strict';
 
-import { Actions, Stores, Worsley, Container } from '../worsley';
+import { Actions, Stores, Worsley, Container } from '../../worsley';
 import React from 'react/addons';
 import assert from 'assert';
 import sinon from 'sinon';

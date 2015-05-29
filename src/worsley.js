@@ -2,10 +2,9 @@
 
 import Store from './store';
 import Actions from './actions';
-import Container from './container';
 import { Dispatcher } from 'flux';
 
-class Worsley {
+export default class Worsley {
   constructor() {
     this.actions = {};
     this.stores = {};
@@ -33,9 +32,11 @@ class Worsley {
   }
 }
 
+const Flux = Worsley;
+
 export {
   Store,
   Actions,
-  Container,
-  Worsley
+  Worsley,
+  Flux
 };
