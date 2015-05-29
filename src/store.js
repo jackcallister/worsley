@@ -8,6 +8,8 @@ class Store extends Events.EventEmitter {
   constructor(instance) {
     super();
     this.dispatcher = instance.dispatcher;
+    this.state = {};
+    this._initialState = {};
   }
 
   emitChange() {
@@ -27,6 +29,11 @@ class Store extends Events.EventEmitter {
     this.emitChange();
   }
 
+  setInitialState(state) {
+    this.state = state;
+    this._initialState = state;
+  }
+
   registerActionHandler(constant, func) {
     const fn = func.bind(this);
 
@@ -42,7 +49,7 @@ class Store extends Events.EventEmitter {
   }
 
   unload() {
-    // TODO: Reset state to original;
+    this.state = this._initialState;
   }
 }
 

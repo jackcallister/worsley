@@ -57,4 +57,17 @@ describe('Store', () => {
       sinon.assert.calledOnce(method);
     });
   });
+
+  describe('#setInitialState', () => {
+    const store = new TestStore();
+    const initialState = {
+      foo: 'bar'
+    };
+
+    store.setInitialState(initialState);
+
+    it('sets the state', () => {
+      assert.deepEqual(initialState, store.state);
+    });
+  });
 });
