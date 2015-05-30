@@ -28,7 +28,7 @@ class TodoActions extends Actions {
 
 ### Stores
 
-We now need a store to listen for dispatched actions. Notice the a flux and actions object are injected into the store constructor.
+We now need a store to listen for dispatched actions. Notice the flux and actions object are injected into the store constructor.
 
 ```
 class TodoStore extends Store {
@@ -40,10 +40,9 @@ class TodoStore extends Store {
       todos: []
     });
 
-    this.registerActionHandler(
-      todoActions.constants.addTodo,
-      this.addTodo
-    );
+    this.registerActionHandlers({
+      addTodo: todoActions.constants.addTodo
+    });
   }
 
   addTodo(todo) {
@@ -56,7 +55,7 @@ class TodoStore extends Store {
 
 ### Worsley
 
-The Worsley class brings the actions, stores and any other extensions (web utils) of your system together in a single instance. Every Action and Store must recieve the Worsley instance - this wires everything up to the dispatcher behind the scenes and makes for easier, isolated testing plus explicit dependency injection.
+The Worsley class brings the actions, stores and any other extensions (web utils) of your system together in a single instance. Every Action and Store must recieves the Worsley instance - this wires everything up to the dispatcher behind the scenes and makes for easier, isolated testing plus explicit dependency injection.
 
 ```
 class Flux extends Worsley {
