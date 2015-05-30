@@ -1,4 +1,3 @@
-[![build status](https://circleci.com/gh/jarsbe/worsley.svg?style=shield&circle-token=15536ce2ab4f59b6a00d6795f11fd2f9516e9514)](https://circleci.com/gh/jarsbe/worsley)
 [![code quality](https://codeclimate.com/github/jarsbe/worsley/badges/gpa.svg)](https://codeclimate.com/github/jarsbe/worsley)
 
 ## Disclaimer
