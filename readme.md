@@ -1,4 +1,5 @@
-[![code quality](https://codeclimate.com/github/jarsbe/worsley/badges/gpa.svg)](https://codeclimate.com/github/jarsbe/worsley)
+[![build status](https://img.shields.io/travis/jarsbe/worsley.svg?style=flat-square)](https://travis-ci.org/jarsbe/worsley)
+[![code quality](https://img.shields.io/codeclimate/github/jarsbe/worsley.svg?style=flat-square)](https://codeclimate.com/github/jarsbe/worsley)
 
 ## Disclaimer
 
