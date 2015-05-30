@@ -9,6 +9,7 @@ describe('Store', () => {
 
   const dispatcher = new Dispatcher();
   const flux = { dispatcher: dispatcher };
+  const testMethod = sinon.spy();
 
   class TestStore extends Store {
     constructor() {
@@ -16,12 +17,15 @@ describe('Store', () => {
     }
   }
 
-  describe('#registerActionHandler', () => {
-    const store = new TestStore();
-    const method = sinon.spy();
-    const actionConstant = 'testConstant';
+  TestStore.prototype.testMethod = testMethod;
 
-    store.registerActionHandler(actionConstant, method);
+  describe('#registerActionHandlers', () => {
+    const store = new TestStore();
+    const actionConstant = 'testMethod';
+
+    store.registerActionHandlers({
+      testMethod: actionConstant
+    });
 
     it('calls the handler', () => {
       dispatcher.dispatch({
@@ -29,7 +33,7 @@ describe('Store', () => {
         data: null
       });
 
-      sinon.assert.calledOnce(method);
+      sinon.assert.calledOnce(testMethod);
     });
   });
 

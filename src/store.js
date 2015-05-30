@@ -5,9 +5,9 @@ import assign from 'object-assign';
 
 class Store extends Events.EventEmitter {
 
-  constructor(instance) {
+  constructor(worsley) {
     super();
-    this.dispatcher = instance.dispatcher;
+    this.dispatcher = worsley.dispatcher;
     this.state = {};
     this._initialState = {};
   }
@@ -34,14 +34,15 @@ class Store extends Events.EventEmitter {
     this._initialState = state;
   }
 
-  registerActionHandler(constant, func) {
-    const fn = func.bind(this);
+  registerActionHandlers(handlers) {
+    const keys = Object.keys(handlers);
 
-    this.dispatcher.register(function(payload) {
-      if (payload.type === constant) {
-        fn(payload.data);
-      }
-    });
+    for (let i = 0; i < keys.length; i++) {
+      const func = this[keys[i]].bind(this);
+      const constant = handlers[keys[i]];
+
+      this._registerWithDispatcher(func, constant);
+    }
   }
 
   load(payload) {
@@ -50,6 +51,14 @@ class Store extends Events.EventEmitter {
 
   unload() {
     this.state = this._initialState;
+  }
+
+  _registerWithDispatcher(func, constant) {
+    this.dispatcher.register((payload) => {
+      if (payload.type === constant) {
+        func(payload.data);
+      }
+    });
   }
 }
 
