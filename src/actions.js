@@ -2,8 +2,8 @@
 
 class Actions {
 
-  constructor(instance) {
-    this.dispatcher = instance.dispatcher;
+  constructor(worsley) {
+    this.dispatcher = worsley.dispatcher;
     this.constants = this._constructConstants();
     this._wrapActions();
   }
