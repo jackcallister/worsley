@@ -1,14 +1,13 @@
 'use strict';
 
-import { Dispatcher } from 'flux';
 import { Actions } from '../worsley';
 import assert from 'assert';
 import sinon from 'sinon';
 
 describe('Actions', () => {
 
-  const dispatcher = new Dispatcher();
-  const flux = { dispatcher: dispatcher };
+  const dispatchSpy = sinon.spy();
+  const flux = { dispatcher: { dispatch: dispatchSpy } };
 
   describe('constants', () => {
 
@@ -22,11 +21,30 @@ describe('Actions', () => {
     it('constructs a set of constants', () => {
       const actions = new TestActions(flux);
 
-      assert.deepEqual(actions.constants, {'method': 'method'});
+      assert.deepEqual(actions.constants, {'method': 'testactionsmethod'});
+    });
+
+    describe('multiple classes', () => {
+
+      class SecondTestActions extends Actions {
+
+        method() {
+          return;
+        }
+      }
+
+      it('constructs unique constants', () => {
+        const firstActions = new TestActions(flux);
+        const secondActions = new SecondTestActions(flux);
+
+        assert.notDeepEqual(firstActions.constants, secondActions.constants);
+      });
     });
   });
 
   describe('wrapping', () => {
+
+    const testMethod = sinon.spy();
 
     class TestActions extends Actions {
 
@@ -45,17 +63,19 @@ describe('Actions', () => {
       objectMethod() {
         return { foo: 'bar' };
       }
+
+      funcMethod() {
+        testMethod();
+      }
     }
 
-    const dispatchSpy = sinon.spy();
-    const fluxStub = { dispatcher: { dispatch: dispatchSpy } };
-    const actions = new TestActions(fluxStub);
+    const actions = new TestActions(flux);
 
     it('dispatches undefined', () => {
       actions.undefinedMethod();
 
       sinon.assert.calledWith(dispatchSpy, {
-        type: 'undefinedMethod',
+        type: 'testactionsundefinedMethod',
         data: undefined
       });
     });
@@ -64,7 +84,7 @@ describe('Actions', () => {
       actions.nullMethod();
 
       sinon.assert.calledWith(dispatchSpy, {
-        type: 'nullMethod',
+        type: 'testactionsnullMethod',
         data: null
       });
     });
@@ -73,7 +93,7 @@ describe('Actions', () => {
       actions.intMethod();
 
       sinon.assert.calledWith(dispatchSpy, {
-        type: 'intMethod',
+        type: 'testactionsintMethod',
         data: 1
       });
     });
@@ -82,8 +102,18 @@ describe('Actions', () => {
       actions.objectMethod();
 
       sinon.assert.calledWith(dispatchSpy, {
-        type: 'objectMethod',
+        type: 'testactionsobjectMethod',
         data: { foo: 'bar' }
+      });
+    });
+
+    it('applies functions', () => {
+      actions.funcMethod();
+
+      sinon.assert.calledOnce(testMethod);
+      sinon.assert.calledWith(dispatchSpy, {
+        type: 'testactionsfuncMethod',
+        data: undefined
       });
     });
   });

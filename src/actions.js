@@ -16,25 +16,25 @@ class Actions {
   }
 
   _wrapActions() {
-    const constants = Object.keys(this.constants);
+    const actionNames = Object.keys(this.constants);
 
-    for (let i = 0; i < constants.length; i++) {
-      this._wrapAction(constants[i]);
+    for (let i = 0; i < actionNames.length; i++) {
+      this._wrapAction(this.constants[actionNames[i]], actionNames[i]);
     }
   }
 
-  _wrapAction(constant) {
-    const unwrappedMethod = this[constant];
+  _wrapAction(constant, actionName) {
+    const unwrappedAction = this[actionName];
 
-    const wrappedMethod = (...args) => {
-      const data = unwrappedMethod.apply(this, args);
+    const wrappedAction = (...args) => {
+      const data = unwrappedAction.apply(this, args);
 
       this._dispatch(constant, data);
 
       return data;
     };
 
-    this[constant] = wrappedMethod;
+    this[actionName] = wrappedAction;
   }
 
   _constructConstants() {
@@ -45,7 +45,8 @@ class Actions {
     );
 
     for (let i = 0; i < actionNames.length; i++) {
-      constants[actionNames[i]] = actionNames[i];
+      let constant = this.constructor.name.toLowerCase() + actionNames[i];
+      constants[actionNames[i]] = constant;
     }
 
     return constants;
