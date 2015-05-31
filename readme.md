@@ -1,3 +1,5 @@
+Worsley
+===
 [![build status](https://img.shields.io/travis/jarsbe/worsley.svg?style=flat-square)](https://travis-ci.org/jarsbe/worsley)
 [![code quality](https://img.shields.io/codeclimate/github/jarsbe/worsley.svg?style=flat-square)](https://codeclimate.com/github/jarsbe/worsley)
 
@@ -5,11 +7,13 @@
 
 Worsley is a small flux library heavily inspired by Alt and Flummox. I'd suggest using Alt and Flummox at this point as I'm really just having a a bit of fun and learning along the way. This library is not feature complete.
 
-## Worsley
+## Overview
 
 Regular flux (from the Facebook example) causes two patterns; a lot of boilerplate and singletons. Boilerplate makes it difficult to understand and maintain code and singletons become problematic when building isomorphic applications.
 
-Ideally we can reduce boilerplate and use instances instead. This is where a library like Worsley can help.
+Ideally we can reduce boilerplate and use instances instead. This is where a library like Worsley can help. It will probably help to look at [this project](https://github.com/jarsbe/book-shelf) which consumes Worsley.
+
+`npm install worsley@0.0.1-alpha.2`
 
 ### Actions
 
