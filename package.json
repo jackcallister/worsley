@@ -8,7 +8,7 @@
   "scripts": {
     "test": "npm run mocha && npm run lint",
     "lint": "node_modules/.bin/eslint src/",
-    "mocha": "node_modules/.bin/mocha src/__tests__/ --compilers js:babel/register",
+    "mocha": "node_modules/.bin/mocha src/ --recursive --compilers js:babel/register",
     "prepublish": "npm run test && npm run build",
     "build": "webpack"
   },
