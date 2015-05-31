@@ -2,8 +2,9 @@ var path = require('path');
 
 module.exports = {
   entry: {
-    main: "./src/worsley",
-    container: "./src/addons/container"
+    'main': "./src/worsley",
+    'container': "./src/addons/container",
+    'test-utils': "./src/addons/test-utils"
   },
 
   output: {
