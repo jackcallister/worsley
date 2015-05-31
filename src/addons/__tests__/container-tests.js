@@ -1,6 +1,7 @@
 'use strict';
 
-import { Actions, Stores, Worsley, Container } from '../../worsley';
+import { Actions, Stores, Worsley } from '../../worsley';
+import Container from '../container';
 import React from 'react/addons';
 import assert from 'assert';
 import sinon from 'sinon';
@@ -15,7 +16,7 @@ const flux = {
 
 class TestComponent extends React.Component {
   render() {
-    return React.DOM.h1(null, this.props.foo);
+    return React.createElement('h1', null, this.props.foo);
   }
 }
 
